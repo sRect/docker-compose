@@ -2,6 +2,7 @@ const Koa = require("koa");
 const Router = require("@koa/router");
 const path = require("path");
 const static = require("koa-static");
+const bodyParser = require("koa-bodyparser");
 // const koalogger = require("koa-logger");
 const ROOT = path.resolve(process.cwd(), "./");
 const { accessLogger } = require(path.resolve(ROOT, "./util/logger"));
@@ -15,6 +16,7 @@ const router = new Router();
 app.use(accessLogger());
 // app.use(koalogger());
 app.use(static(path.resolve(__dirname, "./public")));
+app.use(bodyParser());
 
 // 加载所有子路由
 router.use("/", index.routes(), index.allowedMethods());

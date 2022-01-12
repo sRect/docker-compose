@@ -13,6 +13,7 @@ index.get("/", async (ctx, next) => {
       <li>ctx.method: ${ctx.method}</li>
       <li>ctx.query: ${JSON.stringify(ctx.query)}</li>
       <li>ctx.querystring: ${JSON.stringify(ctx.querystring)}</li>
+      <li>ctx.request.body: ${JSON.stringify(ctx.request.body)}</li>
     </ul>
   `;
 
