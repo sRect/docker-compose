@@ -22,4 +22,4 @@ COPY . ${APP_PATH}
 
 EXPOSE 4000
 
-CMD ["npm", "server"]
+CMD ["npm", "run", "server"]
