@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM node:16.13.1
 
 ENV NODE_ENV=production \
   APP_PATH=/app
@@ -6,7 +6,7 @@ ENV NODE_ENV=production \
 WORKDIR $APP_PATH
 
 # 使用apk命令安装 nodejs 
-RUN apk add --no-cache --update nodejs=16.13.1-r0
+# RUN apk add --no-cache --update nodejs=16.13.1-r0
 
 # 将当前目录的package.json 拷贝到工作目录下
 COPY package.json package-lock.json ./
