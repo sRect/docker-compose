@@ -5,7 +5,7 @@ const static = require("koa-static");
 const bodyParser = require("koa-bodyparser");
 // const koalogger = require("koa-logger");
 const ROOT = path.resolve(process.cwd(), "./");
-const { accessLogger } = require(path.resolve(ROOT, "./util/logger"));
+const { accessLogger, logger } = require(path.resolve(ROOT, "./util/logger"));
 
 const index = require(path.resolve(ROOT, "./routes/index"));
 const uuid = require(path.resolve(ROOT, "./routes/uuid"));
@@ -26,7 +26,7 @@ app.use(router.routes()).use(router.allowedMethods());
 
 app.on("error", function (err) {
   console.log("logging error ", err.message);
-  console.log(err);
+  logger.error("logging error " + err.message);
 });
 
 app.listen(4000, () => {
