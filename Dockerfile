@@ -1,12 +1,12 @@
-FROM alpine:3.15 AS base
+FROM alpine:latest AS base
 
 ENV NODE_ENV=production \
   APP_PATH=/app
 
 WORKDIR $APP_PATH
 
-# 使用apk命令安装 nodejs 
-RUN apk add --no-cache --update nodejs=16.13.1-r0
+# # 使用apk命令安装 nodejs 
+# RUN apk add --no-cache --update nodejs=16.13.1-r0
 
 FROM base AS install
 
