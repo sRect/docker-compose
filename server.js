@@ -1,38 +1,25 @@
 const Koa = require("koa");
-const Router = require("koa-router");
+const Router = require("@koa/router");
 const path = require("path");
 const static = require("koa-static");
-const { nanoid } = require("nanoid/async");
-const { accessLogger, logger } = require(path.resolve(
-  __dirname,
-  "./util/logger"
-));
+// const koalogger = require("koa-logger");
+const ROOT = path.resolve(process.cwd(), "./");
+const { accessLogger } = require(path.resolve(ROOT, "./util/logger"));
+
+const index = require(path.resolve(ROOT, "./routes/index"));
+const uuid = require(path.resolve(ROOT, "./routes/uuid"));
 
 const app = new Koa();
 const router = new Router();
 
-app.use(static(path.resolve(__dirname, "./")));
 app.use(accessLogger());
+// app.use(koalogger());
+app.use(static(path.resolve(__dirname, "./public")));
 
-router.get("/api/uuid", async (ctx, next) => {
-  ctx.body = {
-    code: 200,
-    data: await nanoid(),
-    msg: "ok",
-  };
-
-  next();
-});
-
-router.get("/", async (ctx, next) => {
-  logger.info("我是首页");
-  await ctx.render("index", {
-    title: "Hello Koa 2!",
-  });
-
-  next();
-});
-
+// 加载所有子路由
+router.use("/", index.routes(), index.allowedMethods());
+router.use("/api", uuid.routes(), uuid.allowedMethods());
+// 加载路由中间件
 app.use(router.routes()).use(router.allowedMethods());
 
 app.on("error", function (err) {
