@@ -6,7 +6,7 @@ ENV NODE_ENV=production \
 WORKDIR $APP_PATH
 
 # 使用apk命令安装 nodejs 
-RUN apk add --no-cache --update nodejs=16.13.1
+RUN apk add --no-cache --update nodejs=16.13.2-r0
 
 # 基于基础镜像安装项目依赖
 FROM base AS install
