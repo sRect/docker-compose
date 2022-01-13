@@ -1,0 +1,11 @@
+version: "3"
+services: 
+  node: # nodejs服务
+    build: . # Dockerfile所在目录构建
+    container_name: koa-server
+    ports:
+      - "8001:4000"
+    restart: always # 自动重启
+    environment: 
+      - NODE_ENV=production
+    command: npm run server # 覆盖容器启动后默认执行的命令
