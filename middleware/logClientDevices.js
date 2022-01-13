@@ -18,8 +18,10 @@ function getClientDevice(request) {
 
 // 全局处理错误
 const logClientDevices = async (ctx, next) => {
-  let device = getClientDevice(ctx.request);
-  logger.info(`当前设备：${device}`);
+  if (ctx.url === "/") {
+    let device = getClientDevice(ctx.request);
+    logger.info(`当前设备：${device}`);
+  }
 
   await next();
 };

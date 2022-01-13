@@ -28,7 +28,7 @@ app.use(logClientDevices);
 // 加载所有子路由
 router.use("/", index.routes(), index.allowedMethods());
 router.use("/api", uuid.routes(), uuid.allowedMethods());
-router.use("/todoList", todoList.routes(), todoList.allowedMethods());
+router.use("/api", todoList.routes(), todoList.allowedMethods());
 // 加载路由中间件
 app.use(router.routes()).use(router.allowedMethods());
 
