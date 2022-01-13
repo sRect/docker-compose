@@ -21,7 +21,7 @@ FROM base
 
 # 拷贝 上面生成的 node_modules 文件夹复制到最终的工作目录下
 # COPY命令复制文件夹的时候，不是直接复制该文件夹，而是将文件夹中的内容复制到目标路径
-COPY --from=install ./node_modules $APP_PATH/node_modules
+COPY --from=install $APP_PATH/node_modules $APP_PATH/node_modules
 # 拷贝当前目录的文件到工作目录(除了.dockerignore中忽略的)
 COPY . $APP_PATH/
 
