@@ -2,6 +2,7 @@ version: "3"
 services: 
   node: # nodejs服务
     build: . # Dockerfile所在目录构建
+    image: koa:latest
     container_name: koa-server
     ports:
       - "8001:4000"
