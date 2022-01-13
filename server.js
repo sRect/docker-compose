@@ -3,7 +3,7 @@ const Router = require("@koa/router");
 const path = require("path");
 const static = require("koa-static");
 const bodyParser = require("koa-bodyparser");
-// const koalogger = require("koa-logger");
+const koalogger = require("koa-logger");
 const ROOT = path.resolve(process.cwd(), "./");
 const { accessLogger, logger } = require(path.resolve(ROOT, "./util/logger"));
 
@@ -14,7 +14,7 @@ const app = new Koa();
 const router = new Router();
 
 app.use(accessLogger());
-// app.use(koalogger());
+app.use(koalogger());
 app.use(static(path.resolve(__dirname, "./public")));
 app.use(bodyParser());
 
