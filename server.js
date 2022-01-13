@@ -6,6 +6,10 @@ const bodyParser = require("koa-bodyparser");
 const koalogger = require("koa-logger");
 const ROOT = path.resolve(process.cwd(), "./");
 const { accessLogger, logger } = require(path.resolve(ROOT, "./util/logger"));
+const { handleGlobalError, logClientDevices } = require(path.resolve(
+  ROOT,
+  "./middleware"
+));
 
 const index = require(path.resolve(ROOT, "./routes/index"));
 const uuid = require(path.resolve(ROOT, "./routes/uuid"));
@@ -17,6 +21,8 @@ app.use(accessLogger());
 app.use(koalogger());
 app.use(static(path.resolve(__dirname, "./public")));
 app.use(bodyParser());
+app.use(handleGlobalError);
+app.use(logClientDevices);
 
 // 加载所有子路由
 router.use("/", index.routes(), index.allowedMethods());
