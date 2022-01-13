@@ -13,6 +13,7 @@ const { handleGlobalError, logClientDevices } = require(path.resolve(
 
 const index = require(path.resolve(ROOT, "./routes/index"));
 const uuid = require(path.resolve(ROOT, "./routes/uuid"));
+const todoList = require(path.resolve(ROOT, "./routes/todoList"));
 
 const app = new Koa();
 const router = new Router();
@@ -27,6 +28,7 @@ app.use(logClientDevices);
 // 加载所有子路由
 router.use("/", index.routes(), index.allowedMethods());
 router.use("/api", uuid.routes(), uuid.allowedMethods());
+router.use("/todoList", todoList.routes(), todoList.allowedMethods());
 // 加载路由中间件
 app.use(router.routes()).use(router.allowedMethods());
 
