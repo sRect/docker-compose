@@ -12,7 +12,7 @@ RUN apk add --no-cache --update nodejs=16.13.2-r0 npm
 FROM base AS install
 
 # 将当前目录的package.json 拷贝到工作目录下
-COPY package.json package-lock.json $APP_PATH/
+COPY package.json package-lock.json $APP_PATH
 
 RUN npm install
 
@@ -20,9 +20,10 @@ RUN npm install
 FROM base
 
 # 拷贝 上面生成的 node_modules 文件夹复制到最终的工作目录下
-COPY --from=install node_modules $APP_PATH/
+# COPY命令复制文件夹的时候，不是直接复制该文件夹，而是将文件夹中的内容复制到目标路径
+COPY --from=install ./node_modules $APP_PATH/node_modules
 # 拷贝当前目录的文件到工作目录(除了.dockerignore中忽略的)
-COPY . $APP_PATH/
+COPY . $APP_PATH
 
 EXPOSE 4000
 
