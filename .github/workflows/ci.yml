@@ -37,10 +37,10 @@ jobs:
           # docker image build -t koa:latest .
           docker-compose build
 
-          docker tag docker-compose_node:latest srect/koa:latest
+          docker tag koa:latest srect/koa:latest
           docker-compose push srect/koa:latest
 
-          docker tag docker-compose_vue:latest srect/vite_vue3_pinia:latest
+          docker tag vite_vue3_pinia:latest srect/vite_vue3_pinia:latest
           docker-compose push srect/vite_vue3_pinia:latest
 
           docker logout
