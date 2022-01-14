@@ -22,9 +22,9 @@ COPY --from=install $APP_PATH/node_modules $APP_PATH/node_modules
 # 拷贝当前目录的文件到工作目录(除了.dockerignore中忽略的)
 COPY . $APP_PATH/
 
-RUN yarn global add vite
+RUN yarn create vite
 
-RUN npx vite build
+RUN yarn run build
 
 FROM nginx:stable
 
