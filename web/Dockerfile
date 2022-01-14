@@ -20,5 +20,5 @@ FROM nginx:stable
 WORKDIR /usr/share/nginx/dist
 # 添加自己的配置 default.conf 在下面
 ADD nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build $APP_PATH/dist .
+COPY --from=build ./dist .
 EXPOSE 80
