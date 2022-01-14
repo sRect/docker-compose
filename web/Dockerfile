@@ -12,8 +12,6 @@ FROM base AS install
 
 COPY package.json yarn.lock $APP_PATH/
 
-RUN yarn global add vite
-
 RUN yarn install
 
 FROM base AS build
@@ -23,6 +21,8 @@ COPY --from=install $APP_PATH/node_modules $APP_PATH/node_modules
 
 # 拷贝当前目录的文件到工作目录(除了.dockerignore中忽略的)
 COPY . $APP_PATH/
+
+RUN yarn global add vite
 
 RUN yarn run build
 
