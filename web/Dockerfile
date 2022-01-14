@@ -6,7 +6,7 @@ ENV NODE_ENV=production \
 WORKDIR $APP_PATH
 
 # 使用apk命令安装 nodejs 和 yarn
-RUN apk add --no-cache --update nodejs=16.13.2-r0 yarn
+RUN apk add --no-cache --update nodejs=16.13.2-r0 yarn vite
 
 FROM base AS install
 
