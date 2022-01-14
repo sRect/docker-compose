@@ -4,9 +4,20 @@ services:
     build: . # Dockerfile所在目录构建
     image: koa:latest
     container_name: koa-server
-    ports:
-      - "8001:4000"
+    # ports:
+    #   - "8001:4000"
     restart: always # 自动重启
     environment: 
       - NODE_ENV=production
     command: npm run server # 覆盖容器启动后默认执行的命令
+
+  vue:
+    depends_on: # vue 容器会保证在 node容器之后启动
+      - 'node'
+    build: ./web
+    container_name: vue
+    restart: always
+    environment: 
+      - NODE_ENV=production
+    ports:
+      - "8001:80"

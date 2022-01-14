@@ -1,4 +1,4 @@
-name: Koa2 Server Docker Image Build
+name: Koa2 Server + Vue3 todolist
 
 # https://github.com/docker/build-push-action/blob/master/docs/advanced/cache.md#github-cache
 
