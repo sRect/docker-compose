@@ -3,7 +3,7 @@ services:
   node: # nodejs服务
     build: . # Dockerfile所在目录构建
     image: srect/koa:latest
-    container_name: koa-server
+    container_name: koa_server
     # ports:
     #   - "8001:4000"
     restart: always # 自动重启
