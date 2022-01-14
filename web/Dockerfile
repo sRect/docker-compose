@@ -12,7 +12,7 @@ FROM base AS install
 
 COPY package.json yarn.lock $APP_PATH/
 
-RUN yarn run install
+RUN yarn install
 
 FROM base AS build
 
