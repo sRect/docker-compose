@@ -2,7 +2,7 @@ version: "3"
 services: 
   node: # nodejs服务
     build: . # Dockerfile所在目录构建
-    # image: koa:latest
+    image: srect/koa:latest
     container_name: koa-server
     # ports:
     #   - "8001:4000"
@@ -15,7 +15,8 @@ services:
     depends_on: # vue 容器会保证在 node容器之后启动
       - 'node'
     build: ./web
-    container_name: vue
+    image: srect/vite_vue3_pinia:latest
+    container_name: vite_vue3_pinia
     restart: always
     environment: 
       - NODE_ENV=production
