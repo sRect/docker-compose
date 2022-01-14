@@ -16,7 +16,7 @@ COPY --from=install $APP_PATH/node_modules $APP_PATH/node_modules
 COPY . $APP_PATH/
 RUN yarn run build
 
-FROM nginx:stable
+FROM nginx:alpine
 WORKDIR /usr/share/nginx/dist
 # 添加自己的配置 default.conf 在下面
 ADD nginx.conf /etc/nginx/conf.d/default.conf
