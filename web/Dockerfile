@@ -24,7 +24,7 @@ COPY . $APP_PATH/
 
 RUN yarn global add vite
 
-RUN yarn run build
+RUN npx vite build
 
 FROM nginx:stable
 
