@@ -1,6 +1,15 @@
 version: "3"
 services: 
+  mysql: # mysql
+    build: ./mysql
+    image: srect/todolist_mysql:latest
+    container_name: todolist_mysql_server
+    restart: always
+    # MYSQL_ROOT_PASSWORD: "123456"
+
   node: # nodejs服务
+    depends_on:
+      - 'mysql'
     build: . # Dockerfile所在目录构建
     image: srect/koa:latest
     container_name: koa_server

@@ -1,5 +1,5 @@
-const path = require("path");
-const { logger } = require(path.resolve(__dirname, "../util/logger"));
+// const path = require("path");
+// const { logger } = require(path.resolve(__dirname, "../util/logger"));
 
 function getClientDevice(request) {
   let deviceAgent =
@@ -20,7 +20,8 @@ function getClientDevice(request) {
 const logClientDevices = async (ctx, next) => {
   if (ctx.url === "/") {
     let device = getClientDevice(ctx.request);
-    logger.info(`当前设备：${device}`);
+    // logger.info(`当前设备：${device}`);
+    console.log(`当前设备：${device}`);
   }
 
   await next();

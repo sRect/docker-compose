@@ -6,6 +6,7 @@ const bodyParser = require("koa-bodyparser");
 const koalogger = require("koa-logger");
 const ROOT = path.resolve(process.cwd(), "./");
 const { accessLogger, logger } = require(path.resolve(ROOT, "./util/logger"));
+const { connectMySQL } = require(path.resolve(ROOT, "./util/db"));
 const { handleGlobalError, logClientDevices } = require(path.resolve(
   ROOT,
   "./middleware"
@@ -24,6 +25,8 @@ app.use(static(path.resolve(__dirname, "./public")));
 app.use(bodyParser());
 app.use(handleGlobalError);
 app.use(logClientDevices);
+
+connectMySQL();
 
 // 加载所有子路由
 router.use("/", index.routes(), index.allowedMethods());
