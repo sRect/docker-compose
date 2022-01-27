@@ -1,4 +1,4 @@
-FROM mysql:latest
+FROM mysql:8.0
 
 LABEL version="1.0.0" description="todolist MySQL 服务器"
 WORKDIR /mysql
