@@ -21,6 +21,13 @@ log4js.configure({
       encoding: "utf-8",
       filename: path.join(LOG_PATH, "application.log"),
     },
+    mysql: {
+      type: "dateFile",
+      pattern: "-yyyy-MM-dd.log",
+      alwaysIncludePattern: true,
+      encoding: "utf-8",
+      filename: path.join(LOG_PATH, "mysql.log"),
+    },
     out: {
       type: "console",
     },
@@ -29,9 +36,11 @@ log4js.configure({
     default: { appenders: ["out"], level: "info" },
     access: { appenders: ["access"], level: "info" },
     application: { appenders: ["application"], level: "all" },
+    mysql: { appenders: ["mysql"], level: "all" },
   },
 });
 
 // getLogger 传参指定的是类型
 exports.accessLogger = () => log4js.koaLogger(log4js.getLogger("access")); // 记录所有访问级别的日志
 exports.logger = log4js.getLogger("application");
+exports.mysqlLogger = log4js.getLogger("mysql");

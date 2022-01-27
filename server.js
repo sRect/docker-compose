@@ -26,8 +26,6 @@ app.use(bodyParser());
 app.use(handleGlobalError);
 app.use(logClientDevices);
 
-connectMySQL();
-
 // 加载所有子路由
 router.use("/", index.routes(), index.allowedMethods());
 router.use("/api", uuid.routes(), uuid.allowedMethods());
@@ -40,6 +38,8 @@ app.on("error", function (err) {
   logger.error("logging error " + err.message);
 });
 
-app.listen(4000, () => {
+app.listen(4000, async () => {
   console.log("====your app is running at port 4000=====");
+
+  await connectMySQL();
 });

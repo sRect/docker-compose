@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "node server"
+    "server": "cross-env NODE_ENV=production node server",
+    "start": "cross-env NODE_ENV=development node server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
   "dependencies": {
     "@koa/router": "^10.1.1",
+    "cross-env": "^7.0.3",
+    "dayjs": "^1.10.7",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-log4": "^2.3.2",
