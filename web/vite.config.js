@@ -8,7 +8,6 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 export default defineConfig({
   plugins: [
     vue(),
-    // https://element-plus.gitee.io/zh-CN/guide/quickstart.html#vite
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),
