@@ -1,4 +1,4 @@
-FROM mysql/mysql-server:latest
+FROM mysql:latest AS base
 
 LABEL version="1.0.0" description="todolist MySQL 服务器"
 WORKDIR /mysql
@@ -13,5 +13,9 @@ COPY initial_data.sql /mysql/initial_data.sql
 COPY privileges.sql /mysql/privileges.sql 
 
 EXPOSE 3306
+
+FROM mysql/mysql-server:latest
+
+COPY --from=base . .
 
 CMD ["sh", "/mysql/setup.sh"]
