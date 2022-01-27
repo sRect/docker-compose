@@ -8,7 +8,7 @@ echo '1.启动mysql...'
 #启动mysql
 # service mysql stop
 # service mysql restart
-service mysql start
+sudo service mysql start
 
 sleep 3
 
