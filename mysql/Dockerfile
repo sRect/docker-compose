@@ -3,9 +3,9 @@ FROM mysql:8.0.28
 LABEL version="1.0.0" description="todolist MySQL 服务器"
 WORKDIR /mysql
 
-ENV MYSQL_ROOT_PASSWORD=123456 
-# MYSQL_DATABASE=todolist \
-# MYSQL_ALLOW_EMPTY_PASSWORD=yes
+ENV MYSQL_ROOT_PASSWORD=123456 \
+  MYSQL_DATABASE=todolist \
+  MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
 # 拷贝安装脚本
 COPY setup.sh /mysql/setup.sh 
