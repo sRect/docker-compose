@@ -23,8 +23,6 @@ todoList.get("/todoList/list", async (ctx, next) => {
 
   const filterType = reqParams.filterType || "2";
 
-  console.log("filterType==》", filterType);
-
   try {
     let list = await db.query(selects[filterType], {
       type: QueryTypes.SELECT,

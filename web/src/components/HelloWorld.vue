@@ -8,6 +8,7 @@ import { getTodolist, addTodolist, updateTodolist, deleteTodolist } from "../ser
 
 const inputVal = ref('');
 const loadingRef = ref(null);
+const addBtnDisabled = ref(false);
 const value = ref(types.ALL);
 const options = readonly([{
   value: types.FINISHED,
@@ -38,6 +39,8 @@ const handleAdd = debounce(() => {
     return;
   }
 
+  addBtnDisabled.value = true;
+
   addTodolist(inputVal.value, new Date().getTime())
     .then(res => res.json())
     .then((res) => {
@@ -63,6 +66,9 @@ const handleAdd = debounce(() => {
         message: '添加失败,请重试',
         type: 'error',
       });
+    })
+    .finally(() => {
+      addBtnDisabled.value = false;
     });
 }, 300);
 
@@ -162,7 +168,7 @@ onMounted(() => {
       <div class="card-header">
         <el-input v-model="inputVal" placeholder="Please input">
           <template #append>
-            <el-button type="primary" @click="handleAdd">添加</el-button>
+            <el-button type="primary" :disabled="addBtnDisabled" @click="handleAdd">添加</el-button>
           </template>
         </el-input>
         <div class="filterWrap">
