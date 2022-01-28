@@ -31,3 +31,8 @@ services:
       - NODE_ENV=production
     ports:
       - "8001:80"
+
+networks:
+  default:
+    external:
+      name: vue-koa
