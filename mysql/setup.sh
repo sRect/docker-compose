@@ -4,8 +4,7 @@ set -e
 #查看mysql服务的状态，方便调试，这条语句可以删除
 echo $(service mysql status)
 
-mysql.server start
-echo '1.启动mysql...'
+# echo '1.启动mysql...'
 #启动mysql
 # service mysql stop
 # service mysql restart
@@ -13,12 +12,12 @@ echo '1.启动mysql...'
 
 # sleep 3
 echo '2.创建数据库...'
-mysql -u root -p 123456 </mysql/create_db.sql
+mysql -h localhost -u root -p 123456 </mysql/create_db.sql
 sleep 3
 echo '2.创建数据库完毕...'
 
 echo '3.开始导入数据...'
-mysql -u root -p 123456 </mysql/initial_data.sql
+mysql -h localhost -u root -p 123456 </mysql/initial_data.sql
 echo '3.导入数据完毕...'
 
 #sleep 3
@@ -26,7 +25,7 @@ echo $(service mysql status)
 echo 'mysql容器启动完毕,且数据导入成功'
 
 echo '4.修改mysql权限...'
-mysql -u root -p 123456 </mysql/privileges.sql
+mysql -h localhost -u root -p 123456 </mysql/privileges.sql
 sleep 3
 echo '4.权限修改完毕...'
 
