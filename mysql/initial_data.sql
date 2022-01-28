@@ -2,7 +2,7 @@
 USE todolist;
 
 -- 创建todolist表
-CREATE TABLE IF NOT EXISTS todolist(id VARCHAR(50) PRIMARY KEY, create_time DATETIME UNIQUE, is_finished ENUM('0', '1') DEFAULT '0', msg VARCHAR(100) DEFAULT '--') COMMENT='todolist表';
+CREATE TABLE IF NOT EXISTS todolist(id VARCHAR(50) PRIMARY KEY, create_time DATETIME UNIQUE, is_finished ENUM('0', '1') DEFAULT '0', msg VARCHAR(100) DEFAULT '--') COMMENT='todolist表' ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 打印数据库
 SHOW TABLES;
