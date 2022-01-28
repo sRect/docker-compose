@@ -10,6 +10,11 @@ echo $(service mysql status)
 # service mysql restart
 # service mysql start
 
+echo '1.修改mysql权限...'
+mysql -u root -p 123456 </mysql/privileges.sql
+sleep 3
+echo '1.权限修改完毕...'
+
 # sleep 3
 echo '2.创建数据库...'
 mysql -u root -p 123456 </mysql/create_db.sql
@@ -19,11 +24,6 @@ echo '2.创建数据库完毕...'
 echo '3.开始导入数据...'
 mysql -u root -p 123456 </mysql/initial_data.sql
 echo '3.导入数据完毕...'
-
-echo '4.修改mysql权限...'
-mysql -u root -p 123456 </mysql/privileges.sql
-sleep 3
-echo '4.权限修改完毕...'
 
 #sleep 3
 echo $(service mysql status)
