@@ -12,12 +12,12 @@ echo $(service mysql status)
 
 # sleep 3
 echo '2.创建数据库...'
-mysql -h127.0.0.1 -uroot -p123456 </mysql/create_db.sql
+mysql -hmysql -uroot -p123456 </mysql/create_db.sql
 sleep 3
 echo '2.创建数据库完毕...'
 
 echo '3.开始导入数据...'
-mysql -h127.0.0.1 -uroot -p123456 </mysql/initial_data.sql
+mysql -hmysql -uroot -p123456 </mysql/initial_data.sql
 echo '3.导入数据完毕...'
 
 sleep 3
@@ -25,7 +25,7 @@ echo $(service mysql status)
 echo 'mysql容器启动完毕,且数据导入成功'
 
 echo '4.修改mysql权限...'
-mysql -h127.0.0.1 -uroot -p123456 </mysql/privileges.sql
+mysql -hmysql -uroot -p123456 </mysql/privileges.sql
 sleep 3
 echo '4.权限修改完毕...'
 
