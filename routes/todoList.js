@@ -37,7 +37,9 @@ todoList.get("/todoList/list", async (ctx, next) => {
 
     list = list.map((item) => ({
       ...item,
-      create_time: dayjs(item.create_time).format("YYYY-MM-DD HH:mm:ss"),
+      create_time: dayjs(item.create_time)
+        .tz("Asia/ShangHai")
+        .format("YYYY-MM-DD HH:mm:ss"),
       is_finished: item.is_finished === "0" ? false : true,
     }));
 
@@ -59,7 +61,9 @@ todoList.post("/todoList/addOne", async (ctx, next) => {
   const { msg, timeStamp } = ctx.request.body;
 
   const id = nanoid();
-  const create_time = dayjs(timeStamp).format("YYYY-MM-DD HH:mm:ss");
+  const create_time = dayjs(timeStamp)
+    .tz("Asia/ShangHai")
+    .format("YYYY-MM-DD HH:mm:ss");
 
   try {
     const sql = `INSERT INTO todolist (id, create_time, is_finished, msg) VALUES('${id}', '${create_time}', '0', '${msg}');`;
