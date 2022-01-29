@@ -12,6 +12,12 @@ console.log("process.env.NODE_ENV==>", process.env.NODE_ENV);
 // 此处的host应该指向docker-compose中的容器名
 const db = new Sequelize("todolist", "root", "123456", {
   dialect: "mysql",
+  dialectOptions: {
+    charset: "utf8mb4",
+    collate: "utf8mb4_unicode_ci",
+    supportBigNumbers: true,
+    bigNumberStrings: true,
+  },
   // host: "todolist_mysql_server",
   host:
     process.env.NODE_ENV === "development"
