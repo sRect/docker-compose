@@ -1,6 +1,8 @@
 const path = require("path");
 const Router = require("@koa/router");
 const dayjs = require("dayjs");
+const utc = require("dayjs/plugin/utc"); // dependent on utc plugin
+const timezone = require("dayjs/plugin/timezone");
 const { nanoid } = require("nanoid");
 const { QueryTypes } = require("sequelize");
 const ROOT = path.resolve(process.cwd(), "./");
@@ -9,6 +11,11 @@ const { logger } = require(path.resolve(ROOT, "./util/logger"));
 const getClientIP = require(path.resolve(ROOT, "./util/getClientIP"));
 
 const todoList = new Router();
+
+// https://dayjs.gitee.io/docs/zh-CN/plugin/timezone
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/ShangHai");
 
 // 列表查询
 todoList.get("/todoList/list", async (ctx, next) => {
